@@ -1,0 +1,73 @@
+.btn {
+  padding: rem(4) rem(16);
+  border: solid 1px #bbb;
+  background-color: white;
+  font-size: inherit;
+  color: #888;
+  border-radius: rem(3);
+  box-shadow: 0 rem(2) rem(6) rem(-4) #222;
+  margin-right: 8px;
+  
+  &:hover {
+    border-color: #222;
+    color: #222;
+    box-shadow: 0 rem(2) rem(16) rem(-10) #222;
+  }
+
+  &[disabled] {
+    color: $button_disabled_color;
+  }
+}
+
+.isPressed {
+  border: solid 1px green;
+}
+
+// .btn {
+//   border: solid 1px #aaa;
+//   padding: 4px 8px;
+//   background: white;
+//   border-radius: 3px;
+//   // transition: all 50ms;
+
+//   &:hover {
+//     background-color: #f5f5f5;
+//     transform: scale(1.05);
+//   }
+// }
+
+.btn--validForm.animate {
+  color: green;
+  animation: scaleAnimation 300ms ease-in-out;
+}
+
+.btn--notValidForm.animate {
+  color: red;
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+
+@keyframes scaleAnimation {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.2);}
+  100% {transform: scale(1);}
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+

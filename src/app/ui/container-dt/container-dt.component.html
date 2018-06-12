@@ -1,0 +1,19 @@
+<container-wrapper 
+  addClasses="container--split"
+  [isRequired]="isRequired" 
+  [isValid]="isValid">
+  <div class="label">{{ title }}</div>
+  <div class="content">
+    <p-calendar 
+      [(ngModel)]="value.date" 
+      (ngModelChange)="onchange($event)"
+      [showButtonBar]="true"
+      inputStyleClass="datePickerInput"
+      [disabledDays]="disabledDays"
+      [dateFormat]="dateformatPrime"
+      [placeholder]="placeholder"
+      class="datepicker"
+      #datepicker
+      ></p-calendar>
+  </div>
+</container-wrapper>

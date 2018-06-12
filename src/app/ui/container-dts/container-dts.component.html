@@ -1,0 +1,24 @@
+<container-wrapper 
+  addClasses="container--split"
+  [isRequired]="isRequired" 
+  [isValid]="isValid">
+  <div class="label">{{ title }}</div>
+  <div class="content">
+    <vt-datetimeslot
+      [dateLabel]="dateLabel"
+      [startLabel]="startLabel"
+      [endLabel]="endLabel"
+      [date]="value.date"
+      [fromtime]="value.fromtime"
+      [totime]="value.totime"
+      [startTime]="startTime"
+      [endTime]="endTime"
+      [step]="step"
+      [dateFormat]="dateformat"
+      [disabledDays]="disabledDays"
+      [placeholder]="placeholder"
+      (change)="onchange($event)"
+      class="js-datetimeslot"
+    ></vt-datetimeslot>
+  </div>
+</container-wrapper>

@@ -1,0 +1,32 @@
+<div class="baseContainer" [@fadeAnimation]="getRouterOutletState(o)">  
+  <div class="section-title">
+    <span>Featured components</span>
+    <ul class="section-links">
+      <li 
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true } ">
+        <a [routerLink]="['./']">Request App container</a>
+      </li>
+      
+      <li routerLinkActive="active-link">
+        <a [routerLink]="['state-management-service']">
+          Application state management
+        </a>
+      </li>
+
+      <li routerLinkActive="active-link">      
+        <a [routerLink]="['checkbox-container-component']">
+          Checkbox container
+        </a>
+      </li>      
+    
+      <li routerLinkActive="active-link">
+        <a [routerLink]="['date-time-slot-component']">
+          Date time slot
+        </a>
+      </li>
+    </ul>
+
+  </div>
+  <router-outlet #o="outlet"></router-outlet>
+</div>

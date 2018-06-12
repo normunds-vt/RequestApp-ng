@@ -1,0 +1,98 @@
+@import '../scss/utils';
+@import '../../scss/color';
+
+$baseFontSize: 16px;
+
+$height: 1.6rem;
+$width: 5rem;
+$spacing: 10px;
+$select-color: #2875C7;
+$font-size: rem(13);
+$border-color: #DDD;
+$visibleList: 7;
+$itemPadding: 0 4px 0 6px;
+$wide-dropdown: rem(160);
+.vt-dropdown-container {
+	vertical-align: middle;
+	position: relative;
+	display: inline-block;
+	width: $width;
+	text-align: left;
+	margin: 2px;
+	&:focus {
+		outline-width: 1px;
+		outline-color: $focus-color-soft;
+	}
+	&.show > .vt-dropdown-list {
+		transform: scale(1, 1);
+		transition: transform ease-out 300ms;
+	}
+	&:focus > .vt-dropdown-display {
+		border-bottom: solid 1px #444;
+	}
+	// $icon-width: 14px;
+	> .vt-dropdown-display {
+		height: $height;
+		cursor: pointer;
+		// border: solid 1px $border-color;
+		box-sizing: border-box;
+		border-bottom: solid 1px #aaa;
+		font-size: $font-size;
+		&:focus {
+			border: solid 1px red !important;
+		}
+		> * {
+			height: $height;
+			line-height: $height;
+			display: inline-block;
+		}
+		> span {
+			// padding: $itemPadding;
+			text-align: center;
+			display: block;
+			width: 85%;
+		}
+		> i {
+			position: absolute;
+			width: 15px;
+			right: 0px;
+			top: 0px;
+		}
+	}
+	> .vt-dropdown-list {
+		max-height: (($visibleList * $height) + 2);
+		overflow-y: auto;
+		transform: scale(1, 0);
+		-webkit-transform: scale(1, 0);
+		transform-origin: 0 0;
+		transition: transform ease-in 200ms;
+		position: absolute;
+		right: 0px;
+		left: 0px;
+		z-index: 2;
+		cursor: pointer;
+		background: white;
+		&.wide-dropdown {
+			width: $wide-dropdown
+		}
+		> div {
+			padding: $itemPadding;
+			font-size: $font-size;
+			box-sizing: border-box;
+			border: solid 1px #ddd;
+			border-top: none;
+			line-height: $height;
+			// height: $height;
+			&:hover {
+				background: #f0f0f0;
+			}
+			&.selected {
+				background: #bbb;
+				color: white;
+			}
+		}
+		> div:first-child {
+			border-top: solid 1px #ddd;
+		}
+	}
+}

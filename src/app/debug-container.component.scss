@@ -1,0 +1,75 @@
+.debug-info-container {
+  font-size: 0.85rem;
+  position: relative;
+  min-width: 400px;
+  color: red;
+}
+
+.debug-info-container > input[type=radio]{
+  display: none;
+}
+
+.debug-panel {
+  float: left;
+}
+
+.debug-panel label {
+  padding: 0.3rem 0.6rem;
+  border: solid 1px #ccc;
+  color: #bbb;
+  display: inline-block;
+}
+
+.debug-panel > div {
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  display: none;
+  color: #555;
+}
+
+  input.tab[type=radio] {
+    position: absolute;
+    left: -50000px;
+  }
+
+  input.tab[type=radio]:checked + div > label {
+    color: #222;
+    border-color: #222;
+    border-bottom-color: transparent;
+  }
+  
+  input.tab[type=radio]:checked + div > div {
+    // margin-top: 24px;
+    display: inline-block;
+  }
+  
+  .debug-info-container .list-item {
+    font-size: 10px;
+    line-height: 1.3em;
+    opacity: 0.4;
+    transition: all 100ms;
+  }
+
+    .debug-info-container .list-item.item-selected,
+    .debug-info-container .list-item:hover {
+        font-size: 12px;
+        line-height: 1em;
+        opacity: 1;
+    }
+
+      .debug-info-container .list-item.item-selected > small,
+      .debug-info-container .list-item:hover > small {
+        opacity: 0.5;
+      }
+
+.pre { 
+  white-space: pre;
+  line-height: 1.5;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}

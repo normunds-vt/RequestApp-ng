@@ -1,0 +1,50 @@
+<div class="content">
+  <!-- <div class="content__use-instructions-container">
+    <div 
+      class="content__use-instructions"
+      [class.content__use-instructions--hidden]="hideContentInfo"
+      >
+      {{ infoStr }}
+    </div>
+  </div> -->
+  
+  <div 
+    class="content-text"
+    [class.dragged-over]="isDraggedOver">
+    <div class="content__dropinfo">Drop files here</div>
+    <textarea 
+      class="content-text__input"
+      (paste)="onPaste($event)"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+      [formControl]="contentField"
+      [placeholder]="infoStr"
+      [value]="content"
+    ></textarea>
+  </div>
+  <div *ngIf="!attachements.length" class="image-file-upload-button">
+    <div class='attach-icon'>+</div>
+    add image file
+    <input type="file" accept="image/*" (change)="onChangeFiles($event)">    
+  </div>
+  <div *ngIf="error" class="content-attachments__error">{{ error }}</div>
+  <div 
+    class="content-attachments">
+    <div 
+      *ngFor="let item of attachements"
+      class="content-attachment__item">
+      <img class="content-attachment__image"
+        [src]="item.src">
+      <div>
+        <div class="content-attachement__name">{{ item.name }}</div>
+        <button type="button"
+          (click)="rotateItem(item)"
+          class="content-attachement__rotate-button">Rotate Image</button>
+        <button type="button"
+          (click)="removeItem(item)"
+          class="content-attachement__remove-button">Delete</button>
+        </div>
+    </div>
+  </div>
+</div>

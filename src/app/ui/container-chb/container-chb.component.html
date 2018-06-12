@@ -1,0 +1,36 @@
+<div 
+  class ="container-select"
+  [class.container-select--selected]="value?.selected"
+>
+  <input 
+    *ngIf="!isRadioSelectContainer()"
+    [checked]="value?.selected"
+    (change)="onselect($event.target.checked)" 
+    type="checkbox"
+    [id]="dom_id"
+  >
+  <div>
+    <label 
+      *ngIf="!isRadioSelectContainer()"
+      [class.container-select__label]="!isRadioSelectContainer() && !value?.isrequired"
+      [class.selected]="value?.selected"
+      [for]="dom_id"
+    >
+      {{ title }} <small *ngIf="subtitle">{{ subtitle }}</small>
+    </label>
+    <div 
+      class="container-select__content"
+      [class.container-select__content--hidden]=
+        "!isRadioSelectContainer() && !value?.selected && !value?.isrequired"
+      [class.container-select__content--radio]="isRadioSelectContainer()"
+      [class.container-select__content--required]="value?.isrequired"
+      [class.container-select__content--error]="value?.isrequired && !value?.valid"
+      [class.container-select__content--radiochildselected]=
+        "isRadioSelectContainer() && isChildSelected()"
+    >
+      <ng-content></ng-content>
+    </div>
+  </div>
+  
+</div>  
+

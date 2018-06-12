@@ -1,0 +1,14 @@
+<container-wrapper 
+  [addClasses]="'container--stacked'"
+  [isRequired]="isRequired" 
+  [isValid]="isValid"
+>
+  <div *ngIf="title" class="label">{{ title }}</div>
+
+  <rf-content 
+    [content]="value.text" 
+    [attachements]="value.attachements"
+    [onUpdate]="onUpdate"
+  >
+  </rf-content>
+</container-wrapper>

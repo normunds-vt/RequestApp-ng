@@ -1,0 +1,24 @@
+$full-width: 560px;
+$full-size : "(min-width: 560px)";
+$mobile-size: "(max-width: 560px)";
+
+@mixin full-size-screen {
+  @media (min-width: #{$full-width}) {
+    @content;
+  }
+}
+
+@mixin mobile-size-screen {
+  @media (min-width: #{$full-width}) {
+    @content;
+  }
+}
+
+@media #{$mobile-size} {
+  figure {
+    margin: 0.4rem 0;
+    > img {
+      max-width: 100%;
+      }
+  }
+}

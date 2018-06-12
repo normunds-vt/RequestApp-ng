@@ -1,0 +1,33 @@
+<div tabindex="0" 
+  [ngClass]="{
+    'vt-dropdown-container': true, 
+    'show': dropdownVisible
+  }"
+  (focus)="showDropdown()"
+  (blur)="hideDropdown()"
+  (keydown)="keyEvent($event)"
+>
+  <div 
+    class="vt-dropdown-display"
+    (click)="showDropdown()"
+  >
+    <span 
+      class="vt-dropdown__value"
+      [attr.data-label]="placeholderLabel">{{ _selectedItem }}</span>
+    <i class="fa fa-angle-down" aria-hidden="true"></i>
+  </div>
+
+  <div 
+    [ngClass]="{ 'vt-dropdown-list': true, 'wide-dropdown': isWide }"
+    #dropdown      
+    >
+    <div *ngFor="let listitem of list"
+      [ngClass]="{ 
+        'selected': _fullSelectedItem === listitem,
+        'vt-dropdown__item': true
+       }"
+      (click)="selectItem(listitem); hideDropdown();"
+      >{{ listitem }}</div>
+  </div>
+
+</div>

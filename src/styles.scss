@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+html {
+  // font: 16px/1 Arial;
+  font-family: 'Roboto', Arial;
+}
+
+.ui-calendar input {
+  border: none;
+  border-bottom: solid 1px #222;
+  border-radius: 0px;
+  width: 86px;
+}
+

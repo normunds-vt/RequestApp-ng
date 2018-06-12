@@ -1,0 +1,41 @@
+<div 
+  *ngIf="debugMode"
+  class="debug-info-container">
+
+  <button 
+    (click)="submitRequest()"
+    class="btn btn-submit" 
+    style="margin-bottom: 12px"
+    >Submit Request</button>
+  <button class="btn" (click)="resetRequest()">Reset Request</button>
+
+  <div style="position: relative">
+      <input class="tab" type="radio" checked id="debug-tab0" name="debug-tab">
+      <div class="debug-panel">
+        <label for="debug-tab0">Description</label>
+        <div class="pre">{{ requestDescription }}</div>
+      </div>
+      <input class="tab" type="radio" id="debug-tab1" name="debug-tab">    
+      <div class="debug-panel containerList">
+        <label for="debug-tab1">Selected Items vs All Items</label>
+        <div>
+          <div class="list-item" 
+            *ngFor="let item of contentList"
+            [ngClass]="{ 'item-selected': item.value.valid || item.value.selected }">
+      
+            <span class="pre">{{ objectToString(item) }}</span>
+            <small>
+                {{ item.title }} - {{ item.value.valid || item.value.selected }}
+            </small>
+          </div>
+        </div>
+        
+      </div>
+      <input class="tab" type="radio" id="debug-tab2" name="debug-tab">    
+      <div class="debug-panel">
+        <label for="debug-tab2">Json content</label>
+        <div class="pre">{{ contentListJson }}</div> 
+      </div>
+  </div>
+
+</div>

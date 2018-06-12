@@ -1,0 +1,33 @@
+<container-wrapper 
+  addClasses="container--split"
+  [isRequired]="isRequired" 
+  [isValid]="isValid">
+  <div class="label top">{{ title }}</div>
+  <div class="content checkbox-list-with-other">
+    <ng-container *ngFor="let item of itemlist; let i = index; let c = count">
+      <div *ngIf="!!item" > 
+        <input 
+          type="checkbox" 
+          (change)="onchange(i)" 
+          [checked]="i === selectedItemIndex"
+          [id]="dom_id + i">
+        <div>
+          <label 
+            class="label"
+            [class.selected]="i === selectedItemIndex"
+            [for]="dom_id + i"
+          >{{ item }}</label>
+          <input 
+            *ngIf="item === editableValue && i === selectedItemIndex" 
+            [(ngModel)]='editableTextValue'
+            (ngModelChange)='onchange()'
+            type="text" 
+            [placeholder]="editFieldPlaceholder"
+            class="other"
+          >
+        </div>
+      </div>
+      <hr *ngIf="item === ''">
+    </ng-container>
+  </div>
+</container-wrapper>

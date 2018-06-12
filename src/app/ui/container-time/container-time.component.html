@@ -1,0 +1,14 @@
+<container-wrapper 
+  addClasses="container--split"
+  [isRequired]="isRequired" 
+  [isValid]="isValid">
+  <div class="label">{{ title }}</div>
+  <div style="display:inline-block">
+      <vt-dropdown 
+      [list]="dropdownList"
+      [select]="value.time"
+      (selected)="onchange($event)"
+      class="js-time"
+      ></vt-dropdown>
+  </div>
+</container-wrapper>

@@ -1,0 +1,53 @@
+.openrequest-items {
+  margin-bottom: 1rem;
+}
+.openrequest-item {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  opacity: 0.5;
+  // cursor: pointer;
+  border-left: solid 1px #444;
+  padding: 1px 8px;
+  margin: 4px 0px 8px;
+  max-width: 560px;
+
+  &:hover,
+  &.selected {
+    opacity: 1;
+  }
+
+  &__date, &__title {
+    vertical-align: middle;
+    display: inline-block;
+    white-space: pre;
+  }
+
+  &__date {
+    font-size: 0.7rem;
+    color: #444;
+    width: 9rem;
+    display: none;
+  }
+
+  &__delete {
+    display: inline-block;
+  }
+}
+
+.openrequest-header{
+  margin: 0.85rem 0;
+}
+
+.openrequest__info {
+  color: #aaa;
+  display: block;
+  margin-top: -2px;
+}
+
+.btn-view-more {
+  border: none;
+  cursor: pointer;  
+  margin: 2px 0 8px;
+  display: block;
+  vertical-align: bottom;
+}

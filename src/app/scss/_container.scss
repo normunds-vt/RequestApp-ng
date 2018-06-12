@@ -1,0 +1,323 @@
+@import 'focus';
+
+$placeholder-color: #ccc;
+$placeholder-font-size: 1em;
+$label-width: 135px;
+
+@mixin required {
+  border: solid rem(1) transparent;
+  border-left-width: rem(2);
+}
+
+@mixin required_error {
+  // border-color: #eee;
+  border-left-color: red;
+  padding: 0.6em 0 0.6em 0.6em;   
+}
+
+.container {
+  margin-bottom: rem(4);
+  padding: rem(2) 0;
+  
+  &--required, &--top-level {
+    @include required;
+  }
+
+  &--error {
+    @include required_error(); 
+  }
+
+  .label {
+    color: $label-color;
+    user-select: none;
+  }
+
+  input:focus, textarea:focus { 
+    outline: 0;
+
+    .keyboard-interaction & {
+      @include in-focus;
+    }
+  }
+
+  // > .content  
+  input[type=text], input[type=number] {
+    padding: 0.33rem rem(1);
+    border: none;
+    border-bottom: solid 1px #888;
+    
+    @include focus-element;
+
+    font: inherit;
+
+    &.shortinput {
+      width: rem(100)
+    }
+
+    &.centeredinput {
+      text-align: center
+    }
+
+    &::-webkit-input-placeholder {
+      color: $placeholder-color;
+      font-size: $placeholder-font-size;
+    }
+  }
+
+  textArea {
+    display: block;
+    border: none;
+    border-bottom: solid 1px #888;
+    min-height: rem(36);
+    width: 99%;
+    &::-webkit-input-placeholder {
+      color: $placeholder-color;
+    }
+  }
+
+  transition: all 250ms ease-in;
+  .contant { 
+    transition: all 600ms ease-in; 
+  }
+}
+
+// container-text (input - text), container-list, dts, dt, time
+.container--split { 
+
+  @media #{$full-size} {
+    display: table;
+    width: 100%;
+  }
+
+  > .label{
+    //min-width: rem($label-width);
+    width: rem($label-width);
+    padding-right: rem(6);
+    white-space: nowrap;
+
+    @media #{$full-size} {
+      display: table-cell;
+    }
+  }
+  
+  > .content {
+    > input[type=text]:not(.shortinput) { width:98% }
+    @media #{$full-size} {
+      display: table-cell;
+    }
+  }
+  
+  > input:not(:placeholder-shown) {
+    border-bottom-color: #ccc;
+  }
+
+  > input.project-number,
+  > input[type=number] {
+    width: rem(80);
+    // text-align: center;
+  }
+}
+
+.container--stacked {  // container-text (textAraa)
+  > .label {
+    margin-bottom: rem(2);
+  }
+}
+
+
+// container-select mixins
+@mixin hide-allow-tab-focus {
+  position: absolute;
+  left: -1000px;
+}
+@mixin checkbox-mixin (
+  $checkbox-size: 1rem, 
+  $checkbox-image-off: '/assets/images/chb-off.png',
+  $checkbox-image-on: '/assets/images/chb-on.png',
+  $label-color: #222
+) {
+  // background: url($checkbox_image_off) no-repeat left center;
+  // background-size: $checkbox-size;
+  
+  padding-left: $checkbox-size * 1.3;
+  user-select: none;
+  color: lighten($label-color, 50%);
+  cursor: pointer;
+
+  position: relative;
+  padding-left: $checkbox-size * 1.4;
+  &:before {
+    transition: all .25s ease-in-out;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: $checkbox-size * 0.1;
+    z-index: 1;
+    width: $checkbox-size;
+    height: $checkbox-size;
+    border: 1px solid #f2f2f2; 
+  }
+
+  &:active:before {
+    transform: scale(1.3, 1.3);
+  }
+
+  &.selected {
+    // background-image: url($checkbox-image-on);
+    color: $label-color;
+    &:before {
+      transform: rotate(-50deg) translate(0, 0.1rem);
+ 
+       height:  $checkbox-size * 0.5;
+       width:   $checkbox-size * 0.9;
+ 
+       // border-color: #0e84fb;
+       border-color: #999;
+       border-width: 2px;
+       border-top-style: none;
+       border-right-style: none;
+     } 
+
+     &:active:before {
+      transform: rotate(-50deg) translate(0, 0.1rem) scale(1.3, 1.3);
+    }
+  }
+
+  
+  &:hover { color: $label-color }
+}
+
+@mixin hide_this() {
+  max-height: 0px;
+  opacity: 0;
+  overflow-y: hidden;
+  visibility: hidden;
+  transform: scale(1, 0);
+
+  & > * {
+    visibility: hidden;
+  }
+}
+
+@mixin show_this() {
+  max-height:1200px;
+  opacity: 1;
+  overflow-y: inherit;
+  visibility: visible;
+}
+
+$checkbox-size: rem(16);
+
+.container-select {
+  $checkbox-image-off: '/assets/images/chb-off.png';
+  $checkbox-image-on: '/assets/images/chb-on.png';
+  transition: all 600ms ease-in;
+  position: relative;
+ 
+  > input[type=checkbox] { @include hide-allow-tab-focus }
+
+  &__label {
+    line-height: 2;
+    @include checkbox-mixin($checkbox-size: $checkbox-size);
+    display: block;
+    padding: 0 0 0.2rem ($checkbox-size + 0.4rem);
+
+    small {
+      display: block;
+      line-height: 1.4;
+      color: #bbb;
+      margin-top: -0.2rem;
+      margin-left: 0.1rem;
+    }
+  }
+
+
+  &__content {
+    display: block;
+    margin-left: $checkbox-size * 1.3;
+    transition: all 500ms 300ms ease-in;  
+    transform: scale(1, 1);
+    transform-origin: 50% 0;
+    max-height: 1200px;
+  }
+
+  &__content--hidden { 
+    @include hide_this();
+    transition: all 550ms 200ms ease-out;
+  }
+  // content is visible if label is selected or is radio container
+  // &__content--selected,
+  // &__content--radio { @include show_this() }
+
+  &__content--radio { margin: 0 }
+
+  &__content--required { 
+    margin: 0;
+    @include required;
+  }
+
+  &__content--error {
+    @include required_error;
+  }
+
+  // hide not selected children of content if this is radio container and a 
+  // child has been seleced
+  &__content--radiochildselected > * >
+    .container-select:not(.container-select--selected) {
+      @include hide_this();
+  }
+
+  &__content--radiochildselected > * > &:not(&--selected) {
+    @include hide_this();
+  }
+}
+
+.keyboard-interaction .container-select {
+  * > input[type=checkbox]:focus + div > .container-select__label { @include in-focus }
+}
+
+.checkbox-list-with-other {
+  // display: inline-block;
+  > div {
+    display: inline-block;
+    > input[type=checkbox] { @include hide-allow-tab-focus }
+    > input[type=checkbox]:focus + div > .label { 
+      .keyboard-interaction & {
+        @include in-focus 
+      }
+    }
+    > div {
+      display: inline-block;
+      > .label {
+        display: inline-block;
+        min-width: rem(60);
+        margin-right: rem(5);
+        padding: rem(3);
+        @include checkbox-mixin($checkbox-size: $checkbox-size);
+      }
+    }
+  }
+  hr { 
+    border-style: solid;
+    border-color: transparent;
+    margin: 0 0 rem(3);
+  }
+}
+
+.field-validation-info { 
+  display: inline-block;
+  margin: 0 10px;
+  color: #aaa;
+}
+
+
+@media #{$mobile-size} {
+  .datetimeslot__label {
+    display: none;
+  }
+
+  .vt-dropdown-display span:empty::after {
+    content:  attr(data-label);
+    color: #aaa;
+  }
+}

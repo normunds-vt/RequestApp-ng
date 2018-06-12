@@ -1,0 +1,23 @@
+<div 
+  *ngIf="errorContent" 
+  style="color: red; margin: 12px 12px 24px; white-space:pre;"
+>{{ 
+    errorContent 
+}}</div>
+
+<vt-submit-button
+  *ngIf="isNewRecord || isUpdatedRecord"
+  [isValid]="isValid"
+  (onclick)="onSubmit()"
+  >
+  {{ isNewRecord ? 'Submit' : 'Update Submitted' }}
+</vt-submit-button>
+
+<button 
+  (click)="resetRequest()"
+  class="btn js-cancel">Cancel</button>
+
+<button 
+  *ngIf="!isNewRecord && !isUpdatedRecord"
+  (click)="deleteRequest()"
+  class="btn js-delete">Delete Request</button>

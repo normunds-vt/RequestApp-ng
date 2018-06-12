@@ -1,0 +1,35 @@
+<container-wrapper 
+  [addClasses]="!isOfType('istextarea') 
+    ? 'container--split' 
+    : 'container--stacked'"
+  [isRequired]="isRequired" 
+  [isValid]="isValid"
+>
+  <div *ngIf="title" class="label">{{ title }}</div>
+
+  <div class='content'>
+    <input 
+      *ngIf="!isOfType('istextarea')"
+      [(ngModel)]="value.text" 
+      (input)="valueChanged()"
+      class='js-content-input'
+
+      [class.shortinput]="isOfType('isshort')"
+      [class.centeredinput]="isOfType('iscentered')"
+      [type]="isOfType('isnumeric') ? 'number' : 'text'" 
+      [placeholder]="placeholder"
+      >
+  
+    <textarea 
+      *ngIf="isOfType('istextarea')"
+      [(ngModel)]="value.text" 
+      (input)="valueChanged()"
+      class='js-content-input'
+
+      [placeholder]="placeholder"
+      ></textarea>
+
+    </div>
+    <span *ngIf="errorStr" class="error">{{ errorStr }}</span>
+    
+</container-wrapper>

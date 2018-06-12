@@ -1,0 +1,24 @@
+<div class='app-main-wrapper'>
+  <div rfTabNavigation class="app-main">
+    <nav>
+      <a 
+        routerLink="/" 
+        routerLinkActive="link--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        preserveFragment
+        >Demo</a>    
+      .
+      <a 
+        routerLink="info" 
+        routerLinkActive="link--active"
+        preserveFragment
+      >Request form app info</a>
+    </nav>
+
+    <div 
+      [@routerTransition]="getState(appOutlet)" 
+      style="position: relative">
+      <router-outlet #appOutlet="outlet"></router-outlet>
+    </div>
+  </div>
+</div>

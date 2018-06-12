@@ -1,0 +1,188 @@
+<div class="app-title">Request App</div>
+
+<open-requests></open-requests>
+
+<div style='display: flex;'>
+  <div id="request" class="request">
+    <container-chb radioSelectChild>
+      <container-chb title="Conference Room Meeting Setup" >
+        <container-dts title="Date and time:"
+          required
+          [step]="30"
+          name="dateandtime">
+        </container-dts>
+
+        <container-list
+          required
+          title="Room:"
+          list="24A|24B||25A|25B|25C|25D||Other">
+        </container-list>
+        
+        <container-text title="Project Number:" 
+          required isshort
+          [validateWith]="validateWith.projectNumber"></container-text>          
+
+        <container-chb title="Recuring"
+          style="
+          z-index: 100;
+          display: block;
+          position: relative;"
+          >
+          <container-text title="Recurence pattern:" required
+            subtitle="(Every Tuesday, first Wed of month)"
+          ></container-text>
+          <container-dt title="Recuring until:" required></container-dt>
+        </container-chb>
+      
+        <container-chb required name="IT_OS">
+          <container-chb title="IT request" name="IT"
+            subtitle="(GoToMeeting, Phone/Video Conf. Call, Projector, Laptop)">
+        
+            <container-chb required>
+              <container-chb radioSelectChild >
+                <container-chb title="Go To Meeting">
+                  <container-chb title="International Callers">
+                    <container-text placeholder="List countries" 
+                      name="Countries">
+                    </container-text>
+                  </container-chb>
+                  <container-chb title="Voip" subtitle="(Tall free call over internet)"></container-chb>
+                </container-chb>
+                
+                <container-chb title="Audio Conference Call" >
+                  <container-chb title="International Callers">
+                    <container-text placeholder="List countries">
+                    </container-text>
+                  </container-chb>
+                </container-chb>
+                
+                <container-chb title="Skype"></container-chb>
+                
+                <container-chb title="Video Conference call"></container-chb>
+              </container-chb>
+            
+              <container-chb title="Laptop"></container-chb>
+    
+              <container-chb title="Projector">
+                <container-chb title="Laser Pointer"></container-chb>
+              </container-chb>
+              
+              <container-chb title="Additional IT setup info">
+                <container-text istextarea name="Content"></container-text>
+              </container-chb>
+            </container-chb>
+          </container-chb>
+      
+          <container-chb title="Office Services Setup" name="OS"
+            subtitle="(Drink cart, catering, seating ..)">
+            <container-text title="Total number of attendees" 
+              isnumeric isshort iscentered
+            ></container-text>
+            
+            <container-chb title="Partner and / or Client meeting" name="PartnerAndClientMeeting">
+              <container-text 
+                istextarea
+                title="Please specify which partner(s) will be in attendence:" name="PartnerAttendence"
+              ></container-text>
+            </container-chb>
+            
+            <container-chb title="Drink Cart">
+              <container-chb title="Still Water"></container-chb>
+              <container-chb title="Sparkling Water"></container-chb>
+              <container-chb title="Regular Coffee"></container-chb>
+              <container-chb title="Decaf Coffee"></container-chb>
+              <container-chb title="Tea"></container-chb>
+              <container-chb title="Soda"></container-chb>
+            </container-chb>
+  
+            <container-chb title="Catering">
+              <container-time title="Time of delivery"></container-time>
+              <container-text title="Name of caterer"></container-text>
+            </container-chb>
+          </container-chb>
+        </container-chb>
+        <br>
+        <vt-form-actions></vt-form-actions>
+      </container-chb>
+    
+      <container-chb title="IT Request">
+        <container-chb radioSelectChild>
+          <container-chb title="GoToMeeting / Audio Conference Call"
+            subtitle="(for a meeting not in a conference room)"> 
+            <container-dts title="Date and time:"
+              required
+              [step]="30"
+              name="dateandtime">
+            </container-dts>
+            <container-text title="Project Number:" 
+              required isshort 
+              [validateWith]="validateWith.projectNumber">
+            </container-text>  
+            <container-chb title="Recuring"
+              style="
+              z-index: 100;
+              display: block;
+              position: relative;"
+              >
+              <container-text title="Recurence pattern:" required
+                subtitle="(Every Tuesday, first Wed of month)"
+              ></container-text>
+              <container-dt title="Recuring until:" required></container-dt>
+            </container-chb>
+  
+            <container-chb required>
+              <container-chb title="Go To Meeting">
+                <container-chb title="International Callers">
+                  <container-text placeholder="List countries" 
+                    name="Countries">
+                  </container-text>
+                </container-chb>
+                <container-chb title="Voip" subtitle="(Tall free call over internet)"></container-chb>
+              </container-chb>
+  
+              <container-chb title="Audio Conference Call" >
+                <container-chb title="International Callers">
+                  <container-text placeholder="List countries">
+                  </container-text>
+                </container-chb>
+              </container-chb>
+              
+              <container-chb title="Skype"></container-chb>
+            </container-chb>
+          </container-chb>
+  
+          <container-chb title="Loaner Equipment">
+            <container-text title="Project Number:" 
+              required isshort 
+              [validateWith]="validateWith.projectNumber">
+            </container-text> 
+            <container-chb title="Projector">
+              <container-chb title="Laser Pointer"></container-chb>
+            </container-chb>
+            <container-chb title="Laptop"></container-chb>
+            <container-chb title="Digital Camera"></container-chb>
+            <container-chb title="Smartphone"></container-chb>
+            <container-chb title="Other equipment or request information">
+              <container-text istextarea></container-text>
+            </container-chb>
+          </container-chb>
+
+          <container-chb title="Other IT request (software installation etc.)">
+            <container-content required></container-content>
+          </container-chb>
+        </container-chb>
+
+
+        <br>
+        <vt-form-actions></vt-form-actions>
+      </container-chb>
+     
+      <container-chb title="Printing issue">
+        <container-content required></container-content>
+         <vt-form-actions></vt-form-actions>
+      </container-chb>
+    </container-chb>
+  </div>
+
+  <debug-container></debug-container>
+</div>
